@@ -2,4 +2,14 @@ module github.com/lamhai1401/channel-v2
 
 go 1.18
 
-require github.com/quasilyte/go-ruleguard/dsl v0.3.21
+require (
+	github.com/gorilla/websocket v1.5.0
+	github.com/lamhai1401/gologs v0.0.12
+	github.com/quasilyte/go-ruleguard/dsl v0.3.21
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/sirupsen/logrus v1.8.1 // indirect
+	golang.org/x/sys v0.0.0-20220627191245-f75cf1eec38b // indirect
+)
