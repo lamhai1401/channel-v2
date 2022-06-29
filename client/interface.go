@@ -27,6 +27,12 @@ type Connection interface {
 type Client interface {
 }
 
+// RefCenter regis and unregis puller
+type RefCenter interface {
+	Register(key string) *Puller
+	Unregister(puller *Puller)
+}
+
 // Socket linter
 type Socket interface {
 	Send(*Message) error
