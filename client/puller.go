@@ -5,9 +5,9 @@ import "sync"
 // Puller channel to receive result
 type Puller struct {
 	key    string
-	ch     chan *Message // channel to handle all msg receive
-	center RefCenter     // to remove and regis
-	closed bool          // check close puller
+	ch     chan *Message  // channel to handle all msg receive
+	center RegisterCenter // to remove and regis
+	closed bool           // check close puller
 	mutex  sync.Mutex
 }
 

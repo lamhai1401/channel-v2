@@ -27,8 +27,8 @@ type Connection interface {
 type Client interface {
 }
 
-// RefCenter regis and unregis puller
-type RefCenter interface {
+// RegisterCenter regis and unregis puller
+type RegisterCenter interface {
 	Register(key string) *Puller
 	Unregister(puller *Puller)
 }

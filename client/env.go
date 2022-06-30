@@ -6,6 +6,10 @@ import (
 	"strconv"
 )
 
+const (
+	maxMsgChannSize = 1024
+)
+
 func getTimeout() int {
 	i := 18
 	if interval := os.Getenv("WSS_TIME_OUT"); interval != "" {
