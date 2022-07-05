@@ -27,9 +27,8 @@ func (center *RegCenter) Register(key string) *Puller {
 	defer center.Unlock()
 
 	puller := &Puller{
-		center: center,
-		key:    key,
-		ch:     make(chan *Message, maxMsgChannSize),
+		key: key,
+		ch:  make(chan *Message, maxMsgChannSize),
 	}
 	center.regs[key] = append(center.regs[key], puller)
 
@@ -52,7 +51,8 @@ func (center *RegCenter) Unregister(puller *Puller) {
 	}
 }
 
-func (center *RegCenter) getPullers(key string) []*Puller {
+// GetPullers linter
+func (center *RegCenter) GetPullers(key string) []*Puller {
 	center.Lock()
 	defer center.Unlock()
 
@@ -61,4 +61,21 @@ func (center *RegCenter) getPullers(key string) []*Puller {
 	copy(copied, pullers)
 
 	return copied
+}
+
+// CloseAllPullers linter
+func (center *RegCenter) CloseAllPullers() {
+	center.Lock()
+	for id, pullers := range center.regs {
+		delete(center.regs, id)
+		center.closePuller(pullers)
+	}
+	center.Unlock()
+}
+
+func (center *RegCenter) closePuller(lst []*Puller) {
+	for _, pull := range lst {
+		center.Unregister(pull)
+		pull.Close()
+	}
 }

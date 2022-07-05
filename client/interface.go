@@ -16,28 +16,19 @@ import (
 
 // Connection linter
 type Connection interface {
-	OnMessage()
-	Push(msg *Message) error
 	Chan(topic string) (*Chan, error) //  Chan create a new channel on connection
+	Push(msg *Message) error
+	OnMessage() *Puller
 	Close() error
-	Start() error
-}
-
-// Client linter
-type Client interface {
+	Start()
 }
 
 // RegisterCenter regis and unregis puller
 type RegisterCenter interface {
 	Register(key string) *Puller
 	Unregister(puller *Puller)
-}
-
-// Socket linter
-type Socket interface {
-	Send(*Message) error
-	Recv() (*Message, error)
-	Close() error
+	CloseAllPullers()
+	GetPullers(key string) []*Puller
 }
 
 const maxMimumReadBuffer = 1024 * 1024 * 2
