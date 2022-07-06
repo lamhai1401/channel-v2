@@ -162,6 +162,16 @@ func (conn *Client) pushToChans(wg *sync.WaitGroup, pullers []*Puller, msg *Mess
 	}
 }
 
+// MakeRef linter
+func (conn *Client) MakeRef() string {
+	return conn.ref.makeRef()
+}
+
+// Register linter
+func (conn *Client) Register(key string) *Puller {
+	return conn.refCenter.Register(key)
+}
+
 // Chan linter
 func (conn *Client) Chan(topic string) (*Chan, error) {
 	if conn.status != ConnOpen {
