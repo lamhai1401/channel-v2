@@ -70,7 +70,7 @@ func GetElixirURL(_url string, args url.Values) (string, error) {
 }
 
 func openConnection(originURL string, dialer *websocket.Dialer) (*websocket.Conn, error) {
-	var wsConn *websocket.Conn
+	// var wsConn *websocket.Conn
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(getTimeout())*time.Second)
 	defer cancel()

@@ -3,7 +3,7 @@ module github.com/lamhai1401/channel-v2
 go 1.18
 
 require (
-	github.com/gorilla/websocket v1.5.0
+	github.com/gorilla/websocket v1.4.2
 	github.com/lamhai1401/gologs v0.0.12
 	github.com/quasilyte/go-ruleguard/dsl v0.3.21
 )

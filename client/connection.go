@@ -37,9 +37,12 @@ func Connect(_url string, args url.Values) (Connection, error) {
 		socket: &WSocket{
 			conn: conn,
 		},
-		ctx:    ctx,
-		cancel: cancel,
-		status: ConnOpen,
+		ctx:       ctx,
+		cancel:    cancel,
+		status:    ConnOpen,
+		msgs:      make(chan *Message, maxMsgChannSize),
+		ref:       new(refMaker),
+		refCenter: newRegCenter(),
 	}
 
 	cl.Start()
